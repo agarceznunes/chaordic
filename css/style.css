@@ -1,0 +1,60 @@
+.showcase{
+	border-radius: 7px;
+	border: 1px solid #DDE7ED;
+	box-shadow: 1px 1px 3px #DDE7ED;
+}
+
+.showcase_header{
+	background-color: #DDE7ED;
+	width: 100%;
+	display: inline-block;
+}
+
+.showcase_header h3{
+	color: purple;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-family: "Arial";
+	font-weight: 400;
+}
+
+.left_column{
+	float: left;
+	width: 16.66%;
+}
+
+.right_column{
+	width: 83.33%;
+}
+
+.showcase_content{
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 100%;
+	display: inline-block;
+}
+
+.showcase_content a{
+	text-decoration: none;
+}
+
+.showcase_content .right_column{
+	column-count: 5;
+}
+
+.price{
+	color: darkred;
+}
+
+.payment{
+	color: darkred;
+	font-size: 12px;
+}
+
+.cell{
+	cursor: pointer;
+}
+
+.cell:hover {
+	opacity: 0.7;
+}
