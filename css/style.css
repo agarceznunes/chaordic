@@ -1,60 +1,49 @@
-.showcase{
-	border-radius: 7px;
-	border: 1px solid #DDE7ED;
-	box-shadow: 1px 1px 3px #DDE7ED;
+.row{
+	background: linear-gradient(#F6FBFF, #D8EAFF);
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
-.showcase_header{
-	background-color: #DDE7ED;
-	width: 100%;
-	display: inline-block;
+.row h4{
+	color: #215487;
 }
 
-.showcase_header h3{
-	color: purple;
-	padding-left: 15px;
-	padding-right: 15px;
-	font-family: "Arial";
+.carousel-control{
+	width: 3% !important;
+}
+
+.carousel-control.left,.carousel-control.right {
+	background-image:none !important;
+}
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .icon-prev{
+	left: 0 !important;
+	margin-left: -20px !important;
+}
+
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-prev{
+	right: 0 !important;
+	margin-right: -20px !important;
+}
+
+.title{
+	font-size: 14px;
 	font-weight: 400;
+	color: black;
 }
 
-.left_column{
-	float: left;
-	width: 16.66%;
+.thumbnail{
+	border: none !important;
+	min-height: 300px;
+	margin-top: 10px;
 }
 
-.right_column{
-	width: 83.33%;
-}
-
-.showcase_content{
-	padding-left: 15px;
-	padding-right: 15px;
-	width: 100%;
-	display: inline-block;
-}
-
-.showcase_content a{
+.thumbnail:hover {
+	background: linear-gradient(#D8EAFF, white);
 	text-decoration: none;
 }
 
-.showcase_content .right_column{
-	column-count: 5;
-}
-
-.price{
-	color: darkred;
-}
-
-.payment{
-	color: darkred;
-	font-size: 12px;
-}
-
-.cell{
-	cursor: pointer;
-}
-
-.cell:hover {
-	opacity: 0.7;
+.item p{
+	color: #CC0000;
+	margin: 0px;
 }

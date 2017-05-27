@@ -2,35 +2,108 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8"/>
-		<title>Vitrine - Chaordic</title>
+		<title>Teste Chaordic</title>
 		<link href="css/style.css" rel="stylesheet"/>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/script.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<div class="showcase">
-			<div class="showcase_header">
-				<div class="left_column">
-					<h3>
-						Você visitou:
-					</h3>
-				</div>
-				<div class="right_column">
-					<h3>
-						e talvez se interesse por:
-					</h3>
-				</div>
-			</div>
-			<div class="showcase_content">
-				<div class="left_column">
-					<div class="visited">			
+		<div class="container">
+			<div class="col-md-12">
+				<div class="col-md-3">
+					<div class="row">
+						<h4>Você visitou:</h4>
 					</div>
+					<div class="visited"></div>
 				</div>
-				<div class="right_column">
-					<div class="interest">
-					</div>
-				</div>
-			</div>
-		</div>	
+			    <div class="col-md-9">
+			    	<div class="row">
+			    		<h4>e talvez se interesse por:</h4>
+			    	</div>
+			        <div class="carousel slide" id="myCarousel">
+			          	<div class="carousel-inner"></div>
+			        	<a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+			       		<a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			        </div>
+			    </div>
+		    </div>
+		</div>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				(function () {
+					var url = 'http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X'	
+					handleData = function (data) {
+						var visited = data.data.reference.item;
+						var image = visited.imageName;
+						image = image.replace("//", "http://");
+						var link = visited.detailUrl;
+						link = link.replace("//", "http://");
+						$('.visited').append(
+												'<div class="item">'+
+												'<a class="thumbnail" target="_blank" href="'+link+'">'+
+													'<img src='+image+'>'+
+													'<h4 class="title">'+((visited.name !== null) ? visited.name : '')+'</h4>'+
+													'<p class="price">'+((visited.price !== null) ? 'Por: '+visited.price : '')+'</p>'+
+													'<p class="payment">'+((visited.productInfo.paymentConditions !== null) ? visited.productInfo.paymentConditions : '')+'</p>'+
+												'</a>'+
+											'</div>');								
+						$(data.data.recommendation).each(function(i,interest) {
+							var image = interest.imageName;
+							image = image.replace("//", "http://");
+							var link = interest.detailUrl;
+							link = link.replace("//", "http://");
+								if (i == 0){
+									$('.carousel-inner').append('<div class="item active">'+
+																	'<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">'+
+																		'<a class="thumbnail" target="_blank" href="'+link+'">'+
+																			'<img src='+image+' class="img-responsive">'+
+																			'<h4 class="title">'+((interest.name !== null) ? interest.name : '')+'</h4>'+
+																			'<p class="price">'+((interest.price !== null) ? 'Por: '+interest.price : '')+'</p>'+
+																			'<p class="payment">'+((interest.productInfo.paymentConditions !== null) ? interest.productInfo.paymentConditions : '')+'</p>'+
+																		'</a>'+	
+																	'</div>'+
+																'</div>');
+								} else {
+									$('.carousel-inner').append('<div class="item">'+
+																	'<div class="col-lg-4 col-xs-4 col-md-4 col-sm-4">'+
+																		'<a class="thumbnail" target="_blank" href="'+link+'">'+
+																			'<img src='+image+' class="img-responsive">'+
+																			'<h4 class="title">'+((interest.name !== null) ? interest.name : '')+'</h4>'+
+																			'<p class="price">'+((interest.price !== null) ? 'Por: '+interest.price : '')+'</p>'+
+																			'<p class="payment">'+((interest.productInfo.paymentConditions !== null) ? interest.productInfo.paymentConditions : '')+'</p>'+
+																		'</a>'+	
+																	'</div>'+
+																'</div>');
+								}
+						})	
+						// Instantiate the Bootstrap carousel
+						$('.carousel').carousel({
+							interval: false
+						});
+						// for every slide in carousel, copy the next slide's item in the slide.
+						// Do the same for the next, next item.
+						$('.carousel .item').each(function(){
+							var next = $(this).next();
+							if (!next.length) {
+						    	next = $(this).siblings(':first');
+						  	}
+						  	next.children(':first-child').clone().appendTo($(this));		  
+						  	if (next.next().length>0) {
+						    	next.next().children(':first-child').clone().appendTo($(this));
+						  	} else {
+						  		$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+						  	}
+						});          		
+					},
+					X = handleData;
+					$.ajax({
+						url: url,
+				               dataType: 'jsonp',
+					});
+				})();
+			});
+		</script>	
 	</body>
 </html>
+
