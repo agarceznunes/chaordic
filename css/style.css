@@ -1,3 +1,7 @@
+body{
+	font-family: arial;
+}
+
 .catalog{
 	display: inline-block;
 	position: relative;
@@ -22,7 +26,6 @@
 	padding: 5px;
 	margin-bottom: 10px;
 	color: #215487;
-	font-family: "Arial";
 }
 
 .products_interests{
@@ -44,6 +47,10 @@
 	padding: 0px 30px 20px 30px;
 }
 
+.products_interests *, .products_favorite *{
+	text-decoration: none;
+}
+
 .product:hover{
 	background: linear-gradient(#D8EAFF, white);;
 }
@@ -54,6 +61,18 @@
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 10px;
+}
+
+.product span{
+	display: inline-block;
+	padding-bottom: 5px;
+	color: darkred;
+}
+
+.product h4{
+	margin-bottom: 10px;
+	color: black;
+	font-weight: 400;
 }
 
 .btn_previous{

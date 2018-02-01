@@ -6,7 +6,7 @@ window.onload = function() {
     
 };
 
-function X(data) { //callback
+function X(data) {
     var favorite = data.data.reference;
     var interests = data.data.recommendation;
     populateFavorite(favorite);
@@ -18,7 +18,10 @@ function populateFavorite(favorite) {
     a += '<div class="product">';
     a += '<img src="http:' + favorite.item.imageName + '" alt="favorite">';
     a += '<h4 class="product_description">' + (favorite.item.name) + '</h4>';
-    a += '<span class="product_price">Por: ' + favorite.item.price + '</span>';
+    if (favorite.item.oldPrice != null)
+    a += '<span class="product_price">De: ' + favorite.item.oldPrice + '</span>';
+    a += '<br>';
+    a += '<span class="product_price">Por: <b>' + favorite.item.price + '</b></span>';
     a += '<span class="product_conditions">' + favorite.item.productInfo.paymentConditions + '</span>';
     a += '</div>';
     a += '</a>';
@@ -34,7 +37,10 @@ function populateInterests(interests) {
         itens += '<div class="product">';
         itens += '<img src="http:' + interests[i].imageName + '" alt="interests">';
         itens += '<h4 class="product_description">' + (interests[i].name) + '</h4>';
-        itens += '<span class="product_price">Por: ' + interests[i].price + '</h4>';
+        if (interests[i].oldPrice != null)
+        itens += '<span class="product_price">De: ' + interests[i].oldPrice + '</span>';
+        itens += '<br>';
+        itens += '<span class="product_price">Por: <b>' + interests[i].price + '</b></h4>';
         itens += '<span class="product_conditions">' + interests[i].productInfo.paymentConditions + '</span>';
         itens += '</div>';
         itens += '</div>';
